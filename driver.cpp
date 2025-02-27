@@ -35,7 +35,15 @@ int main() {
         }
 
         std::string opcode = words[0];
-        std::cout << opcode << std::endl;
+        int  opcodeVal = 0;
+        if (opcodeMap.find(opcode) != opcodeMap.end()) {
+            opcodeVal = opcodeMap[opcode];
+        }
+        else {
+            std::cout << "Error: unkown opcode!\n";
+        }
+
+        std::cout << opcodeVal << std::endl;
     }
 
     return 0;
