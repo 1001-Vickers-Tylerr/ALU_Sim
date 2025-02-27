@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <sstream>
+#include <vector>
 
 int main() {
 
@@ -24,7 +26,16 @@ int main() {
     inputFile.open("pp1_input.txt");
 
     while (std::getline(inputFile, line)) {
+        std::istringstream iss(line);
+        std::vector<std::string> words;
+        std::string word;
 
+        while (iss >> word) {
+            words.push_back(word);
+        }
+
+        std::string opcode = words[0];
+        std::cout << opcode << std::endl;
     }
 
     return 0;
