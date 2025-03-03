@@ -3,27 +3,16 @@
 #include <map>
 #include <sstream>
 #include <vector>
+#include "functions.h"
 
 int main() {
-
-    std::map<std::string, int> opcodeMap = {
-        {"ADD", 1},
-        {"SUB", 2},
-        {"AND", 3},
-        {"OR", 4},
-        {"XOR", 5},
-        {"NOT", 6},
-        {"LSL", 7},
-        {"LSR", 8},
-        {"EQ", 9},
-        {"LT", 10},
-        {"GT", 11}
-    };
-
-    std::ifstream inputFile;
+    std::ifstream inputFile("pp1_input.txt");
     std::string line;
 
-    inputFile.open("pp1_input.txt");
+    if (!inputFile.is_open()) {
+        std::cout << "Error opening input file\n";
+        return 1;
+    }
 
     while (std::getline(inputFile, line)) {
         std::istringstream iss(line);
@@ -34,17 +23,13 @@ int main() {
             words.push_back(word);
         }
 
-        std::string opcode = words[0];
-        int  opcodeVal = 0;
-        if (opcodeMap.find(opcode) != opcodeMap.end()) {
-            opcodeVal = opcodeMap[opcode];
-        }
-        else {
-            std::cout << "Error: unkown opcode!\n";
-        }
+        if (words.empty()) continue;
 
-        std::cout << opcodeVal << std::endl;
+        std::string opcode = words[0];
+        std::vector<std::string> operands(words.begin() + 1, words.end());
+        processOperation(opcode, operands);
     }
 
+    inputFile.close();
     return 0;
 }
