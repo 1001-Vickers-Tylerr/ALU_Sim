@@ -13,13 +13,17 @@ void processOperation(const std::string& opcode, const std::vector<std::string>&
     }
     output += ": ";
 
-    // Convert opcode to integer value using the map approach from driver.cpp
     std::map<std::string, int> opcodeMap = {
         {"ADD", 1}, {"SUB", 2}, {"AND", 3}, {"OR", 4}, {"XOR", 5},
         {"NOT", 6}, {"LSL", 7}, {"LSR", 8}, {"EQ", 9}, {"LT", 10}, {"GT", 11}
     };
 
-    int opcodeVal = (opcodeMap.find(opcode) != opcodeMap.end()) ? opcodeMap[opcode] : 0;
+    int opcodeVal;
+if (opcodeMap.find(opcode) != opcodeMap.end()) {
+    opcodeVal = opcodeMap[opcode];
+} else {
+    opcodeVal = 0;
+}
 
     // Check operand count first
     if ((opcodeVal >= 1 && opcodeVal <= 5) || (opcodeVal >= 7 && opcodeVal <= 11)) { // Binary operations
@@ -34,7 +38,8 @@ void processOperation(const std::string& opcode, const std::vector<std::string>&
         }
     }
 
-    // Parse operands
+    // Note for me: std::stoul() is a function that converts a string
+    // into an unsigned long integer
     uint32_t op1 = 0, op2 = 0;
     if (operands.size() >= 1) {
         op1 = std::stoul(operands[0], nullptr, 16);
@@ -112,25 +117,16 @@ void processOperation(const std::string& opcode, const std::vector<std::string>&
             output += (op1 > op2) ? "true" : "false";
             break;
 
-        case 0: // Invalid opcode
-            output += "Unsupported Operation";
-            isValid = false;
-            break;
-
         default:
             output += "Unsupported Operation";
             isValid = false;
             break;
     }
-
-    if (isValid) {
-        std::cout << output << std::endl;
-    } else {
-        std::cout << output << std::endl;
-    }
+    
+    std::cout << output << std::endl;
 }
 
-// Helper function to convert uint32_t to hex string
+// Converting uint32t to hex, helper function
 std::string toHexString(uint32_t value) {
     std::stringstream ss;
     ss << std::hex << std::setw(8) << std::setfill('0') << value;

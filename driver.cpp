@@ -1,3 +1,6 @@
+// Author: Tyler Vickers
+// CS219 Programming Project 1
+
 #include <iostream>
 #include <fstream>
 #include <map>
