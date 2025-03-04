@@ -1,0 +1,3 @@
+To run the program, type 'make' to create the exucutable and then './project'
+to execute. 
+
