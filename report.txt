@@ -1,3 +1,15 @@
 To run the program, type 'make' to create the exucutable and then './project'
 to execute. 
 
+Logic and Functionality of Operations
+ADD: Adds two operands (e.g., 0x1234 + 0x8765 = 0x9999).
+SUB: Subtracts the second operand from the first (e.g., 0x32 - 0x14 = 0x1E).
+AND: Bitwise AND (e.g., 0xD & 0x9 = 0x9).
+OR: Bitwise OR (e.g., 0xA | 0xF = 0xF).
+XOR: Bitwise XOR (e.g., 0x15 ^ 0xF = 0x1A).
+NOT: Bitwise NOT on one operand (e.g., ~0xFFFFFFFF = 0x00000000).
+LSL: Logical shift left (e.g., 0x40 << 1 = 0x80), checks for negative or excessive shifts.
+LSR: Logical shift right (e.g., 0xAAA558 >> 1 = 0x5552AC), same checks as LSL.
+EQ: Equality check (e.g., 0xA == 0xA : true).
+LT: Less than (e.g., 0xA < 0xF : true).
+GT: Greater than (e.g., 0xF > 0xA : true).
